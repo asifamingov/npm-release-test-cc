@@ -1,7 +1,7 @@
 {
-  "name": "web-template-release",
+  "name": "npm-release-test-cc",
   "version": "1.5.5",
-  "description": "SWE3 Web Template",
+  "description": "npm-release-test-cc",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qld-gov-au/web-template-release.git"
+    "url": "git+https://github.com/asifamingov/npm-release-test-cc.git"
   },
   "author": "oss.products@dsiti.qld.gov.au",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/qld-gov-au/web-template-release/issues"
+    "url": "https://github.com/asifamingov/npm-release-test-cc/issues"
   },
-  "homepage": "https://github.com/qld-gov-au/web-template-release#readme"
+  "homepage": "https://github.com/asifamingov/npm-release-test-cc#readme"
 }
