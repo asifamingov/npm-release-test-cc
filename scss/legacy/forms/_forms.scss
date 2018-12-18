@@ -760,7 +760,7 @@ legend .h3 {
     margin-top: 0;
   }
   small, p {
-    font-size: 1.4rem;
+    @include rem(font-size, 14px);
   }
 }
 
@@ -880,9 +880,7 @@ abbr.required, abbr[title*="required"] {
   position: absolute;
   margin-left: -20px;
   padding: 0;
-  /* IE8 needs this to remove earlier padding */
-  top: .3em;
-  /* helps Chrome, Firefox and Opera */
+  top: .4em;
 }
 
 /* compact options layout */
@@ -1258,7 +1256,7 @@ form {
     position: absolute;
     margin-left: -20px;
     padding: 0;
-    top: inherit;
+    //top: inherit;
   }
 }
 
