@@ -1,6 +1,6 @@
 {
   "name": "npm-release-test-cc",
-  "version": "3.1.12",
+  "version": "3.1.13",
   "description": "SWE3 Web Template",
   "main": "index.js",
   "directories": {
