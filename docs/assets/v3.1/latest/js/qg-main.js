@@ -111,23 +111,14 @@
 /* 1 */
 /***/ (function(module, exports) {
 
-	'use strict';var testSites = [
-	'oss-uat.clients.squiz.net',
-	'localhost'];
-	
-	var createPath = function createPath() {var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {
-	    for (var _iterator = testSites[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var site = _step.value;
-	      if (site === location.hostname) {
-	        return 'https://dev-static.qgov.net.au';
-	      }
-	    }} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator.return) {_iterator.return();}} finally {if (_didIteratorError) {throw _iteratorError;}}}
-	  return 'https://static.qgov.net.au';
-	};
+	'use strict'; // All the environment related SWE3 code
 	
 	window.qg = window.qg || {};
 	window.qg.swe = window.qg.swe || {};
-	window.qg.cdn = createPath();
+	window.qg.cdn = window.qg.swe.isProduction === false ? 'https://beta-static.qgov.net.au' : 'https://static.qgov.net.au';
 	window.qg.swe.assets = '/assets/v3.1/latest/';
+	window.qg.googleKey = window.location.hostname.search(/\bdev\b|\btest\b|\blocalhost\b|\buat\b/) !== -1 ? 'AIzaSyCKuaFIFo7YYZXHZ5zaiEZdJx0UBoyfuAE' : 'AIzaSyAqkq7IK18bsh-TUMmNR-x9v9PsptT3LMY';
+	window.qg.googleRecaptchaApiKey = window.location.hostname.search(/\bdev\b|\btest\b|\blocalhost\b|\buat\b/) !== -1 ? '6LeNGSwUAAAAAD6o-P5UTM0FNpKjYB71Kh70F-Ud' : '6LcoIywUAAAAAN-1rq22G-bP3yxl1bBq_5nHJ6s9';
 	
 	window.qg.swe.paths = {
 	  images: window.qg.swe.assets + 'images' };
@@ -205,7 +196,7 @@
 	    };
 	    if ($('#googleapi').length <= 0) {
 	      var s = document.createElement('script');
-	      var u = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCKuaFIFo7YYZXHZ5zaiEZdJx0UBoyfuAE&region=AU&libraries=places';
+	      var u = 'https://maps.googleapis.com/maps/api/js?key=' + window.qg.googleKey + '&region=AU&libraries=places';
 	      s.type = 'text/javascript';
 	      s.id = 'googleapi';
 	      s.src = u;
@@ -2645,7 +2636,7 @@
 	      var form = $(subBtn).parents('form');
 	
 	      grecaptcha.render(subBtn, {
-	        'sitekey': '6LeNGSwUAAAAAD6o-P5UTM0FNpKjYB71Kh70F-Ud', //this value will be replaced by build tool. from gulp-config/
+	        'sitekey': window.qg.googleRecaptchaApiKey, //this value will be replaced by build tool. from gulp-config/
 	        'callback': function callback() {
 	          var response = grecaptcha.getResponse();
 	          if (response === '' || response === undefined || response.length === 0) {
@@ -3192,6 +3183,23 @@
 	  .replace(/{/g, '&#123;') // strip (
 	  .replace(/}/g, '&#124;'); // strip )
 	}
+	// the script try to predict browser name from the User-Agent
+	var browserName = function () {
+	  var ua = navigator.userAgent;
+	  var tem = void 0;
+	  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+	  if (/trident/i.test(M[1])) {
+	    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+	    return 'IE ' + (tem[1] || '');
+	  }
+	  if (M[1] === 'Chrome') {
+	    tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+	    if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+	  }
+	  M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+	  if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+	  return M.join(' ');
+	}();
 	
 	function addHiddenInput(key, val) {
 	  var newHiddenInput = $('<input type="hidden"/>');
@@ -3205,6 +3213,8 @@
 	  addHiddenInput('page-url', window.location.href);
 	  addHiddenInput('page-referer', document.referrer);
 	  addHiddenInput('rspUsrAgent', navigator.userAgent);
+	  addHiddenInput('browserName', browserName);
+	  addHiddenInput('OS', navigator.platform);
 	}
 	
 	module.exports = { init: init };
