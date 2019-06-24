@@ -45,61 +45,36 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	
-	
-	
 	var _qgEnv = __webpack_require__(1);var _qgEnv2 = _interopRequireDefault(_qgEnv);
+	
+	
 	__webpack_require__(2);
-	__webpack_require__(3);
-	__webpack_require__(4);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	__webpack_require__(5);
-	__webpack_require__(6);
-	
-	
-	__webpack_require__(7);
 	
 	__webpack_require__(8);
 	__webpack_require__(9);
+	
+	
 	__webpack_require__(10);
-	__webpack_require__(11);
-	__webpack_require__(12);
-	__webpack_require__(13);
-	__webpack_require__(14);
-	var _accessibility = __webpack_require__(15);var _accessibility2 = _interopRequireDefault(_accessibility);
-	
-	__webpack_require__(16);
-	__webpack_require__(17);
-	__webpack_require__(18);
-	__webpack_require__(19);
 	
 	
-	var _sectionNav = __webpack_require__(20);var _sectionNav2 = _interopRequireDefault(_sectionNav);
-	var _stepNav = __webpack_require__(21);var _stepNav2 = _interopRequireDefault(_stepNav);
-	var _shareLinks = __webpack_require__(23);var _shareLinks2 = _interopRequireDefault(_shareLinks);
-	__webpack_require__(24);
-	__webpack_require__(25);
-	var _feedbackForm = __webpack_require__(26);var _feedbackForm2 = _interopRequireDefault(_feedbackForm);
-	
-	__webpack_require__(27);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*import './legacy/bootstrap-accessibility.js';*/ /*import '../lib/ext/generate-id.js';*/ // For site-search-autocomplete
-	// import '../../../../../node_modules/bootstrap-accessibility-plugin/plugins/js/bootstrap-accessibility.js'; // Removed due to accessibility issues (ironically)
-	// Utils
-	/*This 2 modules (breakpoints, parentwidth) are to be initialize where we are using these or If we make one common function for small utilities then we can initialize here in the main file.*/ /*import breakpoints        from './utils/breakpoints'; */ // Components
-	/*
-	 * Imports Javascript components for the GLUE
-	 */ // env initialization
-	(function () {'use strict';var franchiseTitle = _qgEnv2.default && _qgEnv2.default.swe && _qgEnv2.default.swe.franchiseTitle;_sectionNav2.default.highlightNavItem();_stepNav2.default.init();_feedbackForm2.default.init(franchiseTitle);_shareLinks2.default.init();
-	  _accessibility2.default.init();
-	})(); // Layout
+	__webpack_require__(21);
+	var _sectionNav = __webpack_require__(22);var _sectionNav2 = _interopRequireDefault(_sectionNav);
+	var _stepNav = __webpack_require__(23);var _stepNav2 = _interopRequireDefault(_stepNav);
+	var _shareLinks = __webpack_require__(25);var _shareLinks2 = _interopRequireDefault(_shareLinks);
+	__webpack_require__(26);
+	__webpack_require__(27);
+	var _feedbackForm = __webpack_require__(28);var _feedbackForm2 = _interopRequireDefault(_feedbackForm);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // components import
+	// legacy module imports
+	// env initialization
+	(function () {'use strict';
+	  var franchiseTitle = _qgEnv2.default && _qgEnv2.default.swe && _qgEnv2.default.swe.franchiseTitle;
+	  _sectionNav2.default.highlightNavItem();
+	  _stepNav2.default.init();
+	  _feedbackForm2.default.init(franchiseTitle);
+	  _shareLinks2.default.init();
+	})(); // Layout imports
+	// utils import
 
 /***/ }),
 /* 1 */
@@ -111,14 +86,21 @@
 	window.qg.swe = window.qg.swe || {};
 	window.qg.cdn = window.qg.swe.isProduction === false ? 'https://beta-static.qgov.net.au' : 'https://static.qgov.net.au';
 	window.qg.swe.assets = '/assets/v3.1/latest/';
-	window.qg.googleKey = window.location.hostname.search(/\bdev\b|\btest\b|\blocalhost\b|\buat\b/) !== -1 ? 'AIzaSyCKuaFIFo7YYZXHZ5zaiEZdJx0UBoyfuAE' : 'AIzaSyAqkq7IK18bsh-TUMmNR-x9v9PsptT3LMY';
-	window.qg.googleRecaptchaApiKey = window.location.hostname.search(/\bdev\b|\btest\b|\blocalhost\b|\buat\b/) !== -1 ? '6LeNGSwUAAAAAD6o-P5UTM0FNpKjYB71Kh70F-Ud' : '6LcoIywUAAAAAN-1rq22G-bP3yxl1bBq_5nHJ6s9';
 	
 	window.qg.swe.paths = {
 	  images: window.qg.swe.assets + 'images' };
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';__webpack_require__(3);
+	__webpack_require__(4);
+	__webpack_require__(5);
+	__webpack_require__(7);
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 	'use strict'; /*globals qg*/
@@ -140,10 +122,16 @@
 	    if (!results || !results[2]) return false;
 	    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 	  };
+	  // Maps view full screen customization code
+	  $('.map-modal').butterfly({
+	    contentDefaultWidth: '90%',
+	    contentDefaultHeight: '90%',
+	    reuseFragment: true });
+	
 	})(jQuery, qg.swe);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 	"use strict"; /*globals qg*/
@@ -166,16 +154,63 @@
 	})(jQuery, qg.swe);
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict'; /**
-	               * When using functionality related to google libraries, this fuction comes handy to check if libraries already exists and then execute custom function
-	               */
-	/* globals qg */
+	'use strict';
+	
+	
+	
+	var _qgGoogleKeys = __webpack_require__(6);var _qgGoogleKeys2 = _interopRequireDefault(_qgGoogleKeys);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+	
 	(function (qg, $) {
 	  'use strict';
-	  // lazy load a script
+	  var googleApiKey = void 0;
+	  var $mapImg = $('.qg-static-map');
+	  window.qg.googleKey = window.location.hostname.search(/\bdev\b|\btest\b|\blocalhost\b|\buat\b/) !== -1 ? _qgGoogleKeys2.default.defGoogle.uat : _qgGoogleKeys2.default.defGoogle.prod;
+	  window.qg.googleRecaptchaApiKey = window.location.hostname.search(/\bdev\b|\btest\b|\blocalhost\b|\buat\b/) !== -1 ? _qgGoogleKeys2.default.defGoogleRecaptcha.uat : _qgGoogleKeys2.default.defGoogleRecaptcha.prod;
+	
+	  var findFranchiseName = function findFranchiseName() {
+	    var path = window.location.pathname.replace(/\/$/, '');
+	    var pathArr = path.split('/').filter(function (e) {
+	      return e;
+	    });
+	    if (pathArr[0]) {
+	      return pathArr[0].toLowerCase();
+	    }
+	  };
+	  var franchise = findFranchiseName();
+	  if (franchise) {
+	    _qgGoogleKeys2.default.franchises.forEach(function (e) {
+	      if (franchise === e.name) {
+	        window.qg.franchise = {
+	          name: e.name,
+	          apiKey: e.apiKey };
+	
+	      }
+	    });
+	  }
+	  googleApiKey = window.qg.franchise && window.qg.franchise.apiKey ? window.qg.franchise.apiKey : window.qg.googleKey;
+	
+	  function generateStaticMapImg(ele) {
+	    var lat = ele.attr('data-lat') || -27.4673;
+	    var lon = ele.attr('data-long') || 153.0233;
+	    var zoom = ele.attr('data-zoom') || 17;
+	    var height = ele.attr('data-height') || 189;
+	    return 'https://maps.googleapis.com/maps/api/staticmap?size=373x' + height + '&maptype=roadmap&markers=' + lat + '%2C' + lon + '&key=' + googleApiKey + '&sensor=false&zoom=' + zoom;
+	  }
+	
+	  if ($mapImg.length > 0) {
+	    var htmlInsert = $('<div>');
+	    $mapImg.each(function () {
+	      var $this = $(this);
+	      $this.find('img').attr('src', generateStaticMapImg($this.find('img')));
+	      htmlInsert.append($this);
+	    });
+	    $('aside').prepend(htmlInsert);
+	    $('a.qg-static-map').wrap("<div class='qg-aside st-map-static'>");
+	    $('.st-map-static').eq(0).prepend("<h2><i class='fa fa-compass' aria-hidden='true'></i>Maps</h2>");
+	  }
 	  function lazyScript(url) {
 	    $('head').append('<script type="text/javascript" src="' + url + '"></script>');
 	  }
@@ -190,7 +225,7 @@
 	    };
 	    if ($('#googleapi').length <= 0) {
 	      var s = document.createElement('script');
-	      var u = 'https://maps.googleapis.com/maps/api/js?key=' + window.qg.googleKey + '&region=AU&libraries=places';
+	      var u = 'https://maps.googleapis.com/maps/api/js?key=' + googleApiKey + '&region=AU&libraries=places';
 	      s.type = 'text/javascript';
 	      s.id = 'googleapi';
 	      s.src = u;
@@ -215,10 +250,18 @@
 	      }
 	    }
 	  };
-	})(qg, jQuery);
+	})(qg, jQuery); /**
+	                 * When using functionality related to google libraries, this fuction comes handy to check if libraries already exists and then execute custom function
+	                 */ /* globals qg */
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, exports) {
+
+	module.exports = {"defGoogle":{"uat":"AIzaSyCKuaFIFo7YYZXHZ5zaiEZdJx0UBoyfuAE","prod":"AIzaSyANZv-2WcXRzkBqtgEcLTZq7zVy-9eNWgw"},"defGoogleRecaptcha":{"uat":"6LeNGSwUAAAAAD6o-P5UTM0FNpKjYB71Kh70F-Ud","prod":"6LcoIywUAAAAAN-1rq22G-bP3yxl1bBq_5nHJ6s9"},"franchises":[{"name":"about","apiKey":"AIzaSyBi-T3vrvcYwouFPqPI5IgLoQxl2hz6Ogs"},{"name":"atsi","apiKey":"AIzaSyB2mTTDd1CcLEYrLHJJHlzX60vQ68snyko"},{"name":"community","apiKey":"AIzaSyCJwNeGu0XT1lvhg-2cm7S27BQo9k7Jd9E"},{"name":"disability","apiKey":"AIzaSyC-KQFfBhoGle7kJJhY1Pf_GvR_qC5jzN4"},{"name":"education","apiKey":"AIzaSyDeeYKKOyQCYkpVWXRLLxyNjfy2dhyWVls"},{"name":"emergency","apiKey":"AIzaSyD1xT_2Dh2EZ7Iy6SLodeH8CJzbXlp6vgE"},{"name":"environment","apiKey":"AIzaSyAZJjfwIKDPlQs-S3id-CGp8U_S4U7idFI"},{"name":"families","apiKey":"AIzaSyBucRn0YhJhQ-ELSS-MM7JvYb19-I1bqqI"},{"name":"health","apiKey":"AIzaSyD_Xzvr6nBm5PlpANw2UZ2df3-U5eeOlvY"},{"name":"housing","apiKey":"AIzaSyCgMKJlbP1SRIf3xCMFDbBImNkF_BCubvk"},{"name":"jobs","apiKey":"AIzaSyBXmI1DZvPFVQ_h-E1TNsPNdlNuqDd7MVo"},{"name":"law","apiKey":"AIzaSyBeij584IMIZqpftyhMCt_lZ_hBK_h8hMc"},{"name":"recreation","apiKey":"AIzaSyDJmfdqYI3eyV8-ivwPWVIIHxBzqo5_v2I"},{"name":"seniors","apiKey":"AIzaSyA3PDnd30Twv3Zr3JKqiAUYNO1983ZDBe0"},{"name":"transport","apiKey":"AIzaSyARzyCPigCt9cW1F6ua0_U3NVLdRbxwLyg"},{"name":"youth","apiKey":"AIzaSyCe7FYHy28So2Uio_OEQje0o0Pr23s7gt0"}]}
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 	/* ========================================================================
@@ -239,7 +282,7 @@
 	module.exports = parentWidth;
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	'use strict';var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {return typeof obj;} : function (obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;}; /*! Form validation - v1.1.1 - 2014-04-09
@@ -1865,7 +1908,7 @@
 	//# sourceMappingURL=qg-forms.js.map
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	'use strict'; /*
@@ -2056,53 +2099,24 @@
 	}); // onready
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict'; /***********************************
-	              /////////////////
-	              // QG Lightbox //
-	              /////////////////
-	              
-	              A wrapper for whatever lightbox technology is used. At the moment, Butterfly.
-	              
-	              Dependancies: (Cannot be included because of errors)
-	              import './../../lib/ext/butterfly/jquery.resize-events.js';
-	              import './../../lib/ext/butterfly/jquery.history.js';
-	              import './../../lib/ext/butterfly/jquery.butterfly.js';
-	              
-	              TODO:
-	              - Add function to load a lightbox with a string of formatted HTML from JS directly
-	              
-	              ***********************************/
+	'use strict';__webpack_require__(11);
+	__webpack_require__(12);
+	__webpack_require__(13);
+	__webpack_require__(14);
+	__webpack_require__(15);
+	__webpack_require__(16);
+	__webpack_require__(17);
+	__webpack_require__(18);
+	__webpack_require__(19);
+	var _accessibility = __webpack_require__(20);var _accessibility2 = _interopRequireDefault(_accessibility);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 	
-	jQuery.qgLightbox = {};
-	
-	// Auto load
-	(function ($) {
-	  'use strict';
-	
-	  $.fn.qgLightbox = function () {var _this = this;var inOpts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	    // Wrapper for whatever technology is used
-	    var outOpts = {};
-	    if (inOpts.callbackPreOpen !== undefined) {
-	      outOpts.callbackPreOpen = inOpts.callbackPreOpen;
-	    }
-	    // Initialise lightbox links for each match
-	    return this.each(function () {
-	      $(_this).butterfly(outOpts);
-	    });
-	  };
-	  var init = function initQGLightbox() {
-	    // Default simple operation
-	    $('*[data-qg-lightbox=true]').not('[id]').attr('id', Math.random(100000, 999999).toString(36).substr(2));
-	    $('*[data-qg-lightbox=true]').butterfly();
-	  };
-	  init();
-	})(jQuery);
+	_accessibility2.default.init();
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 	'use strict'; /*global jQuery*/
@@ -2143,7 +2157,7 @@
 	})(jQuery);
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	/**
@@ -2259,7 +2273,7 @@
 	})();
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 	'use strict'; /**
@@ -2399,7 +2413,7 @@
 	})(jQuery, qg);
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	/*aside carousel play and pause feature*/
@@ -2452,7 +2466,7 @@
 	})(jQuery);
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	'use strict';(function ($) {
@@ -2495,7 +2509,7 @@
 	})(jQuery);
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	'use strict'; /**
@@ -2531,61 +2545,6 @@
 	    if (linkedpanel.length > 0) {
 	      linkedpanel.prop('checked', true);
 	    }
-	  }
-	})(jQuery);
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-	/* ========================================================================
-	* Accessibility helpers
-	* ======================================================================== */
-	
-	'use strict';
-	
-	function opensInNewWindow() {
-	  var $target = $('a[target=_blank]');
-	
-	  if (!$target.hasClass('qg-accessibility-off') && // Legacy
-	  $target.attr('data-access-extlink') !== false && // Legacy
-	  $target.attr('data-access-new-window') !== false &&
-	  $target.attr('href') !== undefined) {
-	    if ($.contains('.qg-blank-notice', $target) === false) {
-	      $target.append(' <span class="qg-blank-notice sr-only">(Opens in new window)</span> ');
-	    }
-	    if ($target.attr('title') === undefined) {
-	      $target.attr('title', 'Opens in new window');
-	    }
-	  }
-	}
-	
-	function addCorrectIncorrect() {
-	  var ext = ':not(:has(.qg-blank-notice))';
-	  var $correct = $('.qg-correct' + ext + ', table.qg-correct-incorrect td:nth-child(odd)' + ext);
-	  var $incorrect = $('.qg-incorrect' + ext + ', table.qg-correct-incorrect td:nth-child(even)' + ext);
-	
-	  $correct.prepend('<span class="qg-blank-notice sr-only">Correct.</span> ');
-	  $incorrect.prepend('<span class="qg-blank-notice sr-only">Incorrect.</span> ');
-	}
-	
-	function init() {
-	  if ($('body').attr('data-qg-accessibility') !== false) {
-	    opensInNewWindow();
-	    addCorrectIncorrect();
-	  }
-	}
-	
-	module.exports = { init: init };
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-	'use strict';(function ($) {
-	  //Copyrights update to current year
-	  if ($('#qg-copyright-daterange').length > 0) {
-	    $('#qg-copyright-daterange').html('1995&ndash;' + new Date().getFullYear());
 	  }
 	})(jQuery);
 
@@ -2855,41 +2814,25 @@
 
 	'use strict';(function ($) {
 	  'use strict';
-	
-	  // Use uppercase here, as not all uses are case sensitive
-	  var documentTypes = 'PDF|DOC|DOCX|XLS|XLSX|RTF';
-	
+	  var linkType = '.PDF$|.DOC$|.DOCX$|.XLS$|.XLSX$|.RTF$';
+	  var contentType = 'PDF|DOC|DOCX|XLS|XLSX|RTF';
 	  // onready
 	  $(document).ready(function () {
-	    // find links in content and asides that are missing metadata markup
-	    $('a', '#qg-primary-content, #qg-secondary-content').filter(function () {
-	      var documentLink = new RegExp('\\.(' + documentTypes + ')$', 'i').test(this.href);
-	
-	      if (documentLink) {
-	        // add document link class
-	        // has meta markup?
-	        return $(this).addClass('download').find('.meta').length === 0;
-	      }
-	
-	      return false;
-	    }).each(function () {
+	    $('a', '#qg-primary-content, #qg-secondary-content').each(function () {
 	      var $this = $(this);
-	      var linkText = $this.text();
-	      var title;
-	      var meta;
-	
-	      // has metadata without markup?
-	      if (new RegExp('\\((?:' + documentTypes + '),?\\s+[0-9\\.]+\\s*[KM]B\\)$', 'i').test(linkText)) {
-	        meta = $('<span class="meta">' + linkText.replace(new RegExp('^.*\\((' + documentTypes + '),?\\s+([0-9\\.]+)\\s*([KM]B)\\)$'), '($1, $2$3)') + '</span>');
-	        title = $this.contents().eq(-1);
-	        title[0].data = title[0].data.replace(new RegExp('\\s+\\((?:' + documentTypes + '),?\\s+[0-9\\.]+\\s*[KM]B\\)$'), '');
-	        $this.wrapInner('<span class="title"/>');
-	        $this.append(' ');
-	        $this.append(meta);
-	      } else {
-	        // get file type from extension
-	        linkText = $this.attr('href').replace(/^.*\.(.+)$/, '$1').toUpperCase();
-	        $this.wrapInner('<span class="title"/>').append(' <span class="meta">(' + linkText + ')</span>');
+	      var linkRegex = new RegExp(linkType, 'i');
+	      var contentRegex = new RegExp(contentType, 'i');
+	      if (linkRegex.test($this.attr('href'))) {
+	        var linkText = $this.text();
+	        if (contentRegex.test(linkText)) {
+	          if (/\.\d*?/.test(linkText) && /KB/.test(linkText)) {
+	            var extractSize = new RegExp('\\((?:' + contentType.toUpperCase() + '),?\\s+[0-9\\.]+\\s*[KM]B\\)', 'i');
+	            linkText.match(extractSize) ? $(this).find('.meta').empty().append(linkText.match(extractSize)[0].toUpperCase().replace(/(\.\d*)/gi, '')) : '';
+	          }
+	        } else {
+	          linkText = $this.attr('href').replace(/^.*\.(.+)$/, '$1').toUpperCase();
+	          $this.append(' <span class="meta">(' + linkText + ')</span>');
+	        }
 	      }
 	    });
 	  });
@@ -2897,6 +2840,61 @@
 
 /***/ }),
 /* 20 */
+/***/ (function(module, exports) {
+
+	/* ========================================================================
+	* Accessibility helpers
+	* ======================================================================== */
+	
+	'use strict';
+	
+	function opensInNewWindow() {
+	  var $target = $('a[target=_blank]');
+	
+	  if (!$target.hasClass('qg-accessibility-off') && // Legacy
+	  $target.attr('data-access-extlink') !== false && // Legacy
+	  $target.attr('data-access-new-window') !== false &&
+	  $target.attr('href') !== undefined) {
+	    if ($.contains('.qg-blank-notice', $target) === false) {
+	      $target.append(' <span class="qg-blank-notice sr-only">(Opens in new window)</span> ');
+	    }
+	    if ($target.attr('title') === undefined) {
+	      $target.attr('title', 'Opens in new window');
+	    }
+	  }
+	}
+	
+	function addCorrectIncorrect() {
+	  var ext = ':not(:has(.qg-blank-notice))';
+	  var $correct = $('.qg-correct' + ext + ', table.qg-correct-incorrect td:nth-child(odd)' + ext);
+	  var $incorrect = $('.qg-incorrect' + ext + ', table.qg-correct-incorrect td:nth-child(even)' + ext);
+	
+	  $correct.prepend('<span class="qg-blank-notice sr-only">Correct.</span> ');
+	  $incorrect.prepend('<span class="qg-blank-notice sr-only">Incorrect.</span> ');
+	}
+	
+	function init() {
+	  if ($('body').attr('data-qg-accessibility') !== false) {
+	    opensInNewWindow();
+	    addCorrectIncorrect();
+	  }
+	}
+	
+	module.exports = { init: init };
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+	'use strict';(function ($) {
+	  //Copyrights update to current year
+	  if ($('#qg-copyright-daterange').length > 0) {
+	    $('#qg-copyright-daterange').html('1995&ndash;' + new Date().getFullYear());
+	  }
+	})(jQuery);
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -2939,10 +2937,10 @@
 	module.exports = activeSideNav;
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _breakpoints = __webpack_require__(22);var _breakpoints2 = _interopRequireDefault(_breakpoints);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _breakpoints = __webpack_require__(24);var _breakpoints2 = _interopRequireDefault(_breakpoints);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 	var stepNav = {
 	  config: {
 	    $guideSubNav: $('#qg-section-nav .guide-sub-nav'),
@@ -3003,7 +3001,7 @@
 	stepNav;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });var breakpoints = function () {
@@ -3018,7 +3016,7 @@
 	breakpoints;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	'use strict'; /**
@@ -3149,7 +3147,7 @@
 	module.exports = { init: init };
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	'use strict';(function () {
@@ -3161,7 +3159,7 @@
 	})();
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	'use strict'; /**
@@ -3182,7 +3180,7 @@
 	});
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	'use strict'; /**
@@ -3237,14 +3235,6 @@
 	}
 	
 	module.exports = { init: init };
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-	/**
-	 * This file contains general initialisation, element eventlisteners etc
-	 */"use strict";
 
 /***/ })
 /******/ ]);
